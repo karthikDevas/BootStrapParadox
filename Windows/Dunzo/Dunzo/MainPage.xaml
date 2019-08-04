@@ -1,0 +1,91 @@
+﻿<Page
+    x:Class="Dunzo.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Dunzo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource SystemControlAcrylicWindowBrush}">
+
+    <Grid Margin="32,50">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Background="{ThemeResource SystemControlAcrylicWindowBrush}">
+            <Button Click="Button_Click" Content="Choose Image" VerticalAlignment="Top" Padding="12,6" />
+            <Image  Margin="0,50,0,0"  x:Name="image"/>
+        </Grid>
+        <Grid Grid.Column="1" Grid.RowSpan="2" Padding="32">
+            <ListView Grid.Column="1" x:Name="TextListView" >
+                <ListView.Header>
+                    <TextBlock Text="ExtractedText" FontSize="18" Padding="0,12" Foreground="{ThemeResource SystemAccentColorDark1}"></TextBlock>
+                </ListView.Header>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="MinHeight" Value="0"/>
+                        <Setter Property="Padding" Value="0"/>
+
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:YText">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{x:Bind text}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <Grid Grid.Row="1" Background="White" Padding="32" Margin="0,20,0,0">
+        
+            <ListView Grid.Column="1" x:Name="ResultListView"   VerticalAlignment="Top"  BorderThickness="1" BorderBrush="{ThemeResource SystemAccentColorLight1}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="MinHeight" Value="0"/>
+                        <Setter Property="Padding" Value="0"/>
+
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.Header>
+                    <Grid Background="{ThemeResource SystemAccentColor}" Padding="20,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Name" Foreground="White"/>
+                        <TextBlock Grid.Column="1" Foreground="White" Text="Quantity"/>
+                        <TextBlock Grid.Column="2" Foreground="White" Text="Rate"/>
+                        <TextBlock Grid.Column="3" Foreground="White" Text="Amount" HorizontalAlignment="Right"/>
+                    </Grid>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate   x:DataType="local:Item">
+                        <Grid   Padding="20,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{x:Bind name,Mode=OneWay}"/>
+                            <TextBlock Grid.Column="1" Text="{x:Bind qty,Mode=OneWay}"/>
+                            <TextBlock Grid.Column="2" Text="{x:Bind rate,Mode=OneWay}"/>
+                            <TextBlock Grid.Column="3" Text="{x:Bind amount,Mode=OneWay}" HorizontalAlignment="Right"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ProgressRing VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="ProgressRing"/>
+        </Grid>
+    </Grid>
+</Page>
