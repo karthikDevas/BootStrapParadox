@@ -1,7 +1,8 @@
-# Structuring Recognized Text on a Document
+# Text Recognition on an image.
 
-Detect, recognize, and structure text on a business card or receipt using Vision and VisionKit.
 
-## Overview
+Schema to find the Item name and its respective quantity, rate and amount has been handled by mapping the bounding rect of the detected text.
 
-- Note: For more information about this sample code project, see [WWDC 2019 Session 234: Text Recognition in Vision Framework](https://developer.apple.com/videos/play/wwdc19/234/).
+You’ll be needed Xcode 11 beta, to run this code.
+
+
